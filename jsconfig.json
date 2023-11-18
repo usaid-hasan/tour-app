@@ -1,0 +1,10 @@
+{
+  "exclude": ["node_modules", "public"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "target": "ES2022",
+    "baseUrl": ".",
+  }
+}
