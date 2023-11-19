@@ -1,7 +1,7 @@
 import process from 'node:process';
 
-import Server from "./server.js";
-import logger from './utils/logger.js';
+import Server from '#server';
+import logger from '#utils/logger';
 
 await Server.start();
 
@@ -17,5 +17,5 @@ for (const error of ['unhandledRejection', 'uncaughtException']) {
     logger.error(`Error: ${error}. Shutting down server...`);
     if (process.env.NODE_ENV === 'development') logger.error(err);
     Server.stop(1);
-  });  
+  });
 }
