@@ -1,0 +1,36 @@
+@use "../abstracts" as abs;
+
+.header {
+  height: var(--NAVBAR-HEIGHT);
+
+  &#{&}--full {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  &__nav-fixed {
+    max-width: var(--MAX-WIDTH);
+    width: 100%;
+    height: var(--NAVBAR-HEIGHT);
+    padding-inline: var(--HEADER-PAD);
+
+    position: fixed;
+    inset: 0 50% auto;
+    transform: translateX(-50%);
+
+    z-index: 10;
+    background: var(--GRDNT-BG);
+  }
+
+  &__hero-fixed {
+    max-width: var(--MAX-WIDTH);
+    width: 100%;
+    height: calc(100vh - (var(--NAVBAR-HEIGHT) + var(--MIN-HEADER-PAD)));
+    height: calc(100svh - (var(--NAVBAR-HEIGHT) + var(--MIN-HEADER-PAD)));
+    padding-inline: var(--HEADER-PAD);
+
+    position: fixed;
+    inset: var(--NAVBAR-HEIGHT) 50% auto;
+    transform: translateX(-50%);
+  }
+}

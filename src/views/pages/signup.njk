@@ -1,0 +1,54 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-FORM #}
+      <section class="sec-form">
+        <header class="sec-header--center">
+          <h1 class="heading-2">Create your account</h1>
+        </header>
+
+        {# Form #}
+        <form id="form-signup" class="form">
+          <fieldset class="form__group">
+            <input class="form__input" id="name" name="name" type="text" placeholder="Your Name" required="" minlength="3" autocomplete="name">
+            <label class="form__label" for="name">Name</label>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <input class="form__input" id="email" name="email" type="email" placeholder="you@example.com" required="" autocomplete="email">
+            <label class="form__label" for="email">Email address</label>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <input class="form__input" id="password" name="password" type="password" placeholder="••••••••" required="" minlength="8" autocomplete="new-password">
+            <label class="form__label" for="password">Password</label>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <input class="form__input" id="password-confirm" name="passwordConfirm" type="password" placeholder="••••••••" required="" minlength="8" autocomplete="new-password">
+            <label class="form__label" for="password">Confirm password</label>
+          </fieldset>
+
+          <div class="form__group">
+            <button type="submit" class="btn form__btn" title="Signup">Signup</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}
+

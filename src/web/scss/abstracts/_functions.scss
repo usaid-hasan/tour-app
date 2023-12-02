@@ -1,0 +1,26 @@
+@use "sass:math";
+///  Creates a clamp function with min and max values where the values scale linearly 
+///  between the given viewport widths
+///
+///  @param {number} $min-vw
+///    Minimum vw at which clamp value reaches minimum
+///  @param {number} $max-vw
+///    Maximum vw at which clamp value reaches maximum
+///  @param {number} $min-value
+///    Minimum value
+///  @param {number} $max-value
+///    Maximum value
+
+@function fluid-type($min-vw, $max-vw, $min-value: null, $max-value) {
+  @if $min-value ==null {
+    $min-value: $max-value * 2/3;
+  }
+
+  $factor: math.div(math.round(math.div(($max-value - $min-value) * 100000, $max-vw - $min-vw)), 100000);
+
+  $offset: math.div(math.round(($min-value - ($min-vw * $factor)) * 1000), 1000);
+
+  $calc-value: unquote("#{ $offset } + #{ 100vw * $factor }");
+
+  @return clamp(#{ math.min($min-value, $max-value) }, #{ $calc-value }, #{ math.max($min-value, $max-value) });
+}

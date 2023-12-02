@@ -1,0 +1,54 @@
+{% extends "extends/dashboard.njk" %}
+
+{% block dashboard %}
+  <section class="sec-form">
+    <header class="sec-header--center">
+      <h1 class="heading-2">Account settings</h1>
+    </header>
+
+    {# Form #}
+    <form id="form-update-profile" class="form">
+      <fieldset class="form__group">
+        <input class="form__input" id="name" name="name" type="text" placeholder="{{ user.name }}" minlength="3" value="{{ user.name }}" autocomplete="name">
+        <label class="form__label" for="name">Name</label>
+      </fieldset>
+
+      <fieldset class="form__group">
+        <input class="form__input" id="email" name="email" type="email" placeholder="{{ user.email }}" value="{{ user.email }}" autocomplete="email">
+        <label class="form__label" for="email">Email address</label>
+      </fieldset>
+
+      <fieldset class="form__group form__group--row">
+        <img class="form__user-photo" src="{{ assetDir.user }}{{ user.photo }}.webp" width="54" height="54" alt="Photo of {{ user.name }}">
+        <input class="form__input--hidden" id="photo" type="file" name="photo" accept=".jpg, .jpeg, .png" value="{{ user.photo }}">
+        <label class="link" for="photo" title="Upload a photo">Choose a photo</label>
+      </fieldset>
+
+      <div class="form__group">
+        <button type="submit" class="btn form__btn" title="Save profile">Save profile</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="sec-form">
+    <div class="form">
+      <div class="form__group form__group--row">
+        <button id="btn-close-account" class="btn btn--error form__btn" title="Close account">
+          <span class="form__icon">
+            <svg>
+              <use href="/icons.svg#trash"></use>
+            </svg>
+          </span>
+          Close my account
+        </button>
+      </div>
+    </div>
+
+    {% from "includes/macro.njk" import confirmationBox %}
+    {% call confirmationBox('form-delete-profile', 'Yes close my account') %}
+      This will permanently close your account.
+      <br>
+      Are you sure you want to do it?
+    {% endcall %}
+  </section>
+{% endblock %}

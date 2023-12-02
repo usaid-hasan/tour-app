@@ -1,0 +1,125 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% set heroBackground = true %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main" id="section-details">
+    <div class="page-slide">
+
+      {# SECTION-DETAILS #}
+      <section class="sec-details">
+        <div class="sec-details__content">
+          <div class="sec-details__text-col">
+            <h2 class="heading-2">Tour details</h2>
+
+            {% for para in tour.description.split('\n') %}
+              <p>{{ para }}</p>
+            {% endfor %}
+          </div>
+
+          <div class="sec-details__feat-col">
+            <div>
+              <h2 class="heading-2">Tour info</h2>
+              <ul class="sec-details__features">
+                {% from "includes/macro.njk" import infoRow %}
+                {{ infoRow('calendar', 'Next date', tour.startDates[0].toLocaleString('en', { month: 'short', year: '2-digit' })) }}
+                {{ infoRow('time', 'Duration', tour.duration + '-day tour') }}
+                {{ infoRow('people', 'Participants', tour.maxGroupSize + ' people') }}
+                {{ infoRow('flag', 'Stops', tour.locations.length + ' locations') }}
+                {{ infoRow('star', 'Rating', tour.ratingsAverage.toFixed(1)  + ' / 5') }}
+                {% if tour.priceDiscount %}
+                  {{ infoRow('card', 'Price', '<strong>' + currencySymbol + ' ' + tour.priceDiscount + '</strong> / person') }}
+                {% else %}
+                  {{ infoRow('card', 'Price', '<strong>' + currencySymbol + ' ' + tour.price + '</strong> / person') }}
+                {% endif %}
+              </ul>
+            </div>
+
+            <div>
+              <h2 class="heading-2">Tour guides</h2>
+              <ul class="sec-details__features">
+                {% for guide in tour.guides %}
+                  {{ infoRow(null, guide.role, guide.name, guide.photo) }}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="sec-details__gallery-col">
+            <article id="slider" class="slider">
+              <div class="slider__container">
+                {% for img in tour.images %}
+                  <div class="slider__slide">
+                    <figure class="sec-details__gallery-img">
+                      <picture>
+                        <source srcset="{{ assetDir.tour }}{{ img }}-1920.avif 1920w, {{ assetDir.tour }}{{ img }}-1440.avif 1440w, {{ assetDir.tour }}{{ img }}-960.avif 960w" sizes="(max-width: 30em) 83.75vw, (max-width: 37.5em) 80.5vw, (max-width: 56.25em) 78vw, (max-width: 64em) 44vw, 45vw" type="image/avif" width="1920" height="1280">
+                        <source srcset="{{ assetDir.tour }}{{ img }}-1920.webp 1920w, {{ assetDir.tour }}{{ img }}-1440.webp 1440w, {{ assetDir.tour }}{{ img }}-960.webp 960w" sizes="(max-width: 30em) 83.75vw, (max-width: 37.5em) 80.5vw, (max-width: 56.25em) 78vw, (max-width: 64em) 44vw, 45vw" type="image/webp" width="1920" height="1280">
+                        <img src="{{ assetDir.tour }}{{ img }}-1920.jpeg" width="1920" height="1280" loading="lazy">
+                      </picture>
+                      <figcaption>{{ tour.name }} Photo {{ loop.index }}</figcaption>
+                    </figure>
+                  </div>
+                {% endfor %}
+              </div>
+              <button id="btn-left-slide" class="btn slider__btn slider__btn--left" title="Previous slide">
+                <div>
+                  <svg>
+                    <use href="/icons.svg#chevron-back"></use>
+                  </svg>
+                </div>
+              </button>
+              <button id="btn-right-slide" class="btn slider__btn slider__btn--right" title="Next slide">
+                <div>
+                  <svg>
+                    <use href="/icons.svg#chevron-forward"></use>
+                  </svg>
+                </div>
+              </button>
+              <div class="slider__dots">
+                {% for i in range(1, tour.images.length + 1 ) %}
+                  <button class="btn slider__dot" data-slide="{{ i }}"></button>
+                {% endfor %}
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {# SECTION-MAP #}
+      <section class="sec-map">
+        <article id="container-map" data-locations="{{ tour.locations | dump }}" data-map-url="{{ mapUrl }}" data-map-attr="{{ mapAttr }}"></article>
+      </section>
+
+      {# SECTION-REVIEWS #}
+      <section class="sec-reviews">
+        <div class="sec-reviews__content">
+          {% if user and canPostReview %}
+            <button id="btn-open-review" class="btn sec-reviews__btn" title="Post review">
+              <span>
+                <svg><use href="/icons.svg#create"></use></svg>
+              </span>
+            </button>
+
+            {% from "includes/macro.njk" import reviewDialog with context %}
+            {{ reviewDialog('form-post-review', 'Post review') }}
+          {% endif %}
+
+          {% from "includes/macro.njk" import reviewBox %}
+          {% for review in tour.reviews %}
+            {{ reviewBox(review) }}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}

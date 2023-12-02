@@ -1,0 +1,95 @@
+@use "../abstracts" as abs;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+
+  border-radius: var(--BORDER-RADIUS-MD);
+  box-shadow: var(--CARD-SHADOW);
+
+  &__img-box {
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+  }
+
+  &__text-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-size: abs.fluid-type(32rem, 144rem, 1.2rem, 1.4rem);
+    gap: 1.8em;
+    padding: 1.8em;
+    color: var(--CLR-GREY-7);
+  }
+
+  &__header {
+    text-transform: uppercase;
+  }
+
+  &__heading {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--CLR-GREY-8);
+  }
+
+  &__sub-heading {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--CLR-PRI);
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__attribute-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1em;
+  }
+
+  &__attribute {
+    display: flex;
+    column-gap: 1em;
+  }
+
+  &__icon {
+    width: 1.5em;
+    height: 1.5em;
+    color: var(--CLR-PRI);
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn {
+    font-weight: 500;
+    --padding: 0.8em 1.2em;
+  }
+
+  &__pricetag {
+    display: flex;
+    gap: 1em;
+
+    & strong {
+      text-align: right;
+      line-height: 1;
+    }
+
+    & s {
+      text-decoration: solid line-through var(--CLR-SEC-3a) 2px;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@layer base {
+  .link {
+    text-underline-offset: 2px;
+    text-underline-position: under;
+
+    border-radius: var(--link-border-radius, var(--BORDER-RADIUS-PAGE));
+    padding: var(--padding, .2em 1em);
+
+    transition: all .3s;
+    cursor: pointer;
+
+    &,
+    &:link,
+    &:visited {
+      color: var(--link-color, var(--CLR-PRI));
+      text-decoration: var(--link-underline, underline currentColor solid 1px);
+    }
+
+    &:hover,
+    &:active {
+      color: var(--link-hover-color, var(--CLR-PRI-a));
+      text-decoration: var(--link-underline-hover, underline transparent solid 1px);
+    }
+    
+    &--alt {
+      --link-color: var(--CLR-GREY-4);
+      --link-hover-color: var(--CLR-GREY-9);
+      --link-underline: none;
+      --link-underline-hover: none;
+      --padding: 0;
+
+      &:hover,
+      &:active {
+        text-shadow: 0px 0px 3px var(--CLR-GREY-5);
+      }
+    }
+  }
+}

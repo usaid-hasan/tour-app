@@ -1,0 +1,93 @@
+@use "../abstracts" as abs;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--BORDER-RADIUS-PAGE);
+  overflow: hidden;
+
+  &__video-box {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0.45;
+      background: var(--GRDNT-OVERLAY);
+    }
+
+    & picture,
+    & video,
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+
+    & video,
+    & img {
+      object-fit: cover;
+    }
+  }
+
+  &__text-box {
+    position: absolute;
+    inset: 45% 50% auto;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+
+    color: var(--CLR-GREY-9);
+    font-size: abs.fluid-type(32rem, 144rem, 1.2rem, 1.6rem);
+
+    @include abs.respond(phone-small) {
+      top: 55%;
+    }
+
+    & > h1 {
+      margin-bottom: 1.2em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      @include abs.respond(phone-small) {
+        margin-bottom: 2em;
+      }
+    }
+  }
+
+  &__btn-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+
+    @include abs.respond(phone-small) {
+      flex-direction: column;
+      gap: 1em;
+    }
+  }
+
+  &__btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    --btn-box-shadow: var(--BTN-SHADOW);
+    --padding: 1.5em 2.5em;
+
+    &--alt {
+      text-shadow: #fff 0 0 2px;
+      --btn-text-color: currentColor;
+      --btn-text-hover-color: currentColor;
+      --btn-background: transparent;
+      --btn-background-hover: var(--CLR-SEC-1a);
+      --btn-box-shadow: inset 0 0 0 0.15em currentColor;
+    }
+  }
+}

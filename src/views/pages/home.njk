@@ -1,0 +1,104 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% set heroBackground = true %}
+  {% set overview = true %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-ABOUT #}
+      <section class="sec-about">
+        <header class="sec-header">
+          <h2 class="heading-2">Adventure begins here</h2>
+        </header>
+
+        <div class="sec-about__content">
+          <div class="sec-about__text-box">
+            <h3 class="heading-3">A unique experience for the travellers</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+            </p>
+            <h3 class="heading-3">A glimpse of real {# country #}</h3>
+            <p>
+              Asperiores nulla deserunt voluptatum nam. Quis perspiciatis eum corporis obcaecati neque odio animi asperiores.
+            </p>
+          </div>
+
+          <div class="sec-about__img-box">
+            <article class="composition">
+              {% for i in range(1, 4) %}
+                <picture class="composition__photo--p{{ i }}">
+                  <source srcset="{{ assetDir.tour }}overview-{{ i }}.avif" type="image/avif" width="1920" height="1280">
+                  <source srcset="{{ assetDir.tour }}overview-{{ i }}.webp" type="image/webp" width="1920" height="1280">
+                  <img src="{{ assetDir.tour }}overview-{{ i }}.jpeg" width="1920" height="1280" loading="lazy" alt="Photo {{ i }}" class="composition__photo">
+                </picture>
+              {% endfor %}
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {# SECTION-CARDS #}
+      <section class="sec-cards">
+        <header class="sec-header">
+          <h2 class="heading-2">Most popular tours</h2>
+        </header>
+
+        <div class="sec-cards__content">
+          {% from "includes/macro.njk" import tourCard %}
+          {% for tour in tours %}
+            {{ tourCard(tour) }}
+          {% endfor %}
+          <a href="/all-tours" class="link">All tours &rarr;</a>
+        </div>
+      </section>
+
+      {# SECTION-FEATURES #}
+      <section class="sec-features">
+        <div class="sec-features__content">
+          {% from "includes/macro.njk" import featurebox %}
+          {% call featurebox('map', 'Travel with meaning') %}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+          {% endcall %}
+          {% call featurebox('bed', 'Unique places to stay') %}
+            Ea sapiente eos recusandae suscipit, fugit harum deleniti. Soluta dolor doloremque debitis est possimus.
+          {% endcall %}
+          {% call featurebox('leaf', 'Meet nature') %}
+            Ab consectetur adipisicing elit, aperiam nulla cumque quo necessitatibus id fugit.
+          {% endcall %}
+          {% call featurebox('bonfire', 'Fun activities') %}
+            Culpa est minima nostrum vero similique! Reiciendis suscipit, quis ad minima vero ullam.
+          {% endcall %}
+        </div>
+      </section>
+
+      {% if not user %}
+        {# SECTION-CTA #}
+        <section class="sec-cta">
+          <div class="sec-cta__content">
+            <div>
+              <h2 class="heading-2 sec-cta__heading">What are you waiting for</h2>
+              <p class="sec-cta__text">
+                Save up to 50% on tours!
+                <br>
+                Get exclusive access to members only deals by email.
+              </p>
+            </div>
+            <a href="/signup" class="btn sec-cta__btn">Sign up now!</a>
+          </div>
+        </section>
+      {% endif %}
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}

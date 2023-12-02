@@ -1,0 +1,52 @@
+@use "../abstracts" as abs;
+
+.user-panel {
+  position: absolute;
+  inset: 100% 0 auto auto;
+  text-align: center;
+  border: none;
+  background-color: var(--CLR-GREY-0);
+  box-shadow: var(--CARD-SHADOW);
+  border-radius: var(--BORDER-RADIUS-SM);
+  padding: 0 1rem 1rem;
+  transition: all .3s;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.2rem;
+    width: max-content;
+    line-height: 1;
+    --link-underline: none;
+    --link-underline-hover: none;
+  }
+
+  &__btn {
+    --padding: 0.8rem 1.2rem;
+  }
+}
+
+#btn-user-panel span {
+  @include abs.respond(phone) {
+    display: none;
+  }
+}
+
+#btn-sidebar-menu {
+  display: none;
+
+  @include abs.respond(phone) {
+    display: flex;
+  }
+}

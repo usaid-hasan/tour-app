@@ -1,0 +1,84 @@
+@use "../abstracts" as abs;
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  font-size: abs.fluid-type(32rem, 144rem, 1.4rem, 1.8rem);
+
+  &__container {
+    display: flex;
+    transform: translateX(0%);
+    transition: transform 1s ease-out;
+  }
+
+  &__slide {
+    flex: 1 0 100%;
+    padding-inline: 1em;
+
+    @include abs.respond(phone-small) {
+      padding-inline: 0.3em;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    top: calc(50% - 1em);
+    transform: translateY(-50%);
+
+    width: 3em;
+    height: 3em;
+
+    --btn-border-radius: 50%;
+    --padding: 0.8em;
+    --btn-text-color: var(--CLR-GREY-9);
+    --btn-text-hover-color: var(--CLR-PRI);
+    --btn-background: #fff4;
+    --btn-background-hover: #fff7;
+    --btn-box-shadow: none;
+
+    &--left {
+      left: 1em;
+
+      @include abs.respond(phone-small) {
+        left: 0.3em;
+      }
+    }
+
+    &--right {
+      right: 1em;
+
+      @include abs.respond(phone-small) {
+        right: 0.3em;
+      }
+    }
+
+    & > div {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+  }
+
+  &__dot {
+    width: 0.6em;
+    height: 0.6em;
+    transition: all .3s;
+
+    --btn-border-radius: 50%;
+    --padding: 0;
+    --btn-background: var(--CLR-GREY-5);
+    --btn-background-hover: var(--CLR-PRI);
+    --btn-box-shadow: none;
+
+    &--active {
+      background-color: var(--CLR-GREY-8);
+    }
+  }
+}

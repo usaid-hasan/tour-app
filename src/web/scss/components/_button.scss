@@ -1,0 +1,63 @@
+@use "../abstracts" as abs;
+
+@layer base {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+    font-family: inherit;
+
+    vertical-align: middle;
+    text-align: center;
+
+    border: none;
+    border-radius: var(--btn-border-radius, var(--BORDER-RADIUS-PAGE));
+    box-shadow: var(--btn-box-shadow, var(--BTN-SHADOW));
+    padding: var(--padding, .8em 1.6em);
+    gap: var(--gap, 1rem);
+
+    cursor: pointer;
+    transition: all .3s, opacity 0s;
+    position: relative;
+
+    &,
+    &:link,
+    &:visited {
+      color: var(--btn-text-color, var(--CLR-GREY-0));
+      background: var(--btn-background, var(--GRDNT-PRI) left/200% 200%);
+    }
+
+    &:hover,
+    &:active {
+      color: var(--btn-text-hover-color, var(--CLR-GREY-0));
+      background: var(--btn-background-hover, var(--GRDNT-PRI) right/200% 200%);
+    }
+
+    &--error {
+      --btn-background: var(--GRDNT-ALERT) left/200% 200%;
+      --btn-background-hover: var(--GRDNT-ALERT) right/200% 200%;
+    }
+
+    &--spinner {
+
+      &,
+      &:hover,
+      &:active {
+        color: transparent;
+      }
+
+      &::after {
+        content: "";
+        background: no-repeat center/contain url("/spinner.svg");
+        position: absolute;
+        max-height: 3rem;
+        height: 2em;
+        max-width: 3rem;
+        width: 2em;
+        animation: 0.3s linear 0s 1 forwards appear;
+      }
+    }
+  }
+}

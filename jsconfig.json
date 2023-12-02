@@ -2,8 +2,8 @@
   "exclude": ["node_modules", "public"],
   "include": ["src/**/*"],
   "compilerOptions": {
-    "moduleResolution": "nodenext",
-    "module": "NodeNext",
+    "moduleResolution": "bundler",
+    "module": "ES2022",
     "target": "ES2022",
     "baseUrl": ".",
     "paths": {

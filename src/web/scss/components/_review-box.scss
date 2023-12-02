@@ -1,0 +1,88 @@
+@use "../abstracts" as abs;
+
+.review-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  font-size: inherit;
+  gap: 1.5em 1.2em;
+  padding: 1.8em;
+
+  border-radius: var(--BORDER-RADIUS-MD);
+  box-shadow: var(--CARD-SHADOW);
+
+  &__img {
+    grid-column: 1;
+    grid-row: 1;
+    height: 2em;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-size: 1em;
+    font-weight: 500;
+    --link-color: currentColor;
+    --link-hover-color: currentColor;
+    --link-underline: none;
+    --link-underline-hover: none;
+  }
+
+  &__text {
+    grid-column: span 2;
+    position: relative;
+    align-self: center;
+    width: 100%;
+
+    & p {
+      position: relative;
+      font-size: 0.8em;
+      max-height: 10em;
+      overflow-y: auto;
+      scrollbar-color: var(--CLR-PRI) #1111;
+      scrollbar-width: thin;
+      @include abs.webkit-scrollbar(4px, #1111, var(--GRDNT-PRI));
+    }
+
+    &::before {
+      content: '\201C';
+      position: absolute;
+      font-size: abs.fluid-type(32rem, 120rem, 10rem, 20rem);
+      font-size: 5em;
+      inset: -0.3em auto auto -0.3em;
+      font-family: inherit;
+      color: var(--CLR-PRI);
+      line-height: 1;
+      z-index: 1;
+    }
+  }
+
+  &__icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  &__btn-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+  }
+
+  &__btn {
+    --padding: 0;
+    --btn-border-radius: none;
+    --btn-background: transparent;
+    --btn-background-hover: transparent;
+    --btn-text-color: var(--CLR-PRI);
+    --btn-text-hover-color: var(--CLR-PRI-c);
+    --btn-box-shadow: none;
+  }
+
+  &__stars {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    gap: 0.4em;
+    color: var(--CLR-PRI);
+  }
+}

@@ -1,0 +1,21 @@
+{% extends "extends/dashboard.njk" %}
+
+{% block dashboard %}
+  <section class="sec-cards">
+    <header class="sec-header--center">
+      <h1 class="heading-2">Your Bookings</h1>
+    </header>
+
+    <div class="sec-cards__content">
+      {% if tours.length === 0 %}
+        <p>You don't have any bookings yet!</p>
+      {% else %}
+        {# Tour-Cards #}
+        {% from "includes/macro.njk" import tourCard %}
+        {% for tour in tours %}
+          {{ tourCard(tour) }}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

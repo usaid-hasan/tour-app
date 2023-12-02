@@ -1,0 +1,18 @@
+@use "../abstracts" as abs;
+
+.sec-error {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 5%;
+
+  &__content {
+    font-size: abs.fluid-type(32rem, 144rem, 1.2rem, 1.6rem);
+    text-align: center;
+  }
+
+  &__msg {
+    margin: 1.5em 0;
+    font-size: 1.4em;
+    font-weight: 500;
+  }
+}

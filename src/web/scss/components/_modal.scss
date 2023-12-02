@@ -1,0 +1,31 @@
+@use "../abstracts" as abs;
+
+.modal {
+  position: fixed;
+  inset: 50% 50% auto;
+  transform: translate(-50%, -50%);
+  max-width: min(60rem, 90vw);
+  width: max-content;
+
+  font-size: abs.fluid-type(32rem, 144rem, 1.4rem, 1.8rem);
+  padding: 2em;
+  color: currentColor;
+  background-color: var(--CLR-GREY-0);
+
+  border: none;
+  border-radius: var(--BORDER-RADIUS-MD);
+
+  &__close-btn {
+    position: absolute;
+    inset: 0.6rem 0.6rem auto auto;
+    width: 3.2rem;
+    height: 3.2rem;
+
+    --padding: 0;
+    --btn-background: transparent;
+    --btn-background-hover: transparent;
+    --btn-text-color: currentColor;
+    --btn-text-hover-color: var(--CLR-GREY-9);
+    --btn-box-shadow: none;
+  }
+}

@@ -1,0 +1,38 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-ERROR #}
+      <section class="sec-error">
+        <header class="sec-header--center">
+          <h1 class="heading-2">Something went wrong!</h1>
+        </header>
+
+        <div class="sec-error__content">
+          <b class="heading-1--main">😵 😵</b>
+          <p class="sec-error__msg">
+            Error: {{ statusCode }}
+            <br>
+            {{ message }}
+          </p>
+          {% if stack %}
+            <p>{{ stack }}</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}

@@ -1,0 +1,85 @@
+@use "sass:meta";
+@use "../abstracts" as abs;
+
+// Sass loads the css file from node_modules/leaflet/dist/
+@layer leaflet {
+  @include meta.load-css("leaflet.css");
+}
+
+// Overriding default styles from leaflet
+.leaflet {
+  &-container {
+    font-family: var(--FF);
+    font-weight: 400;
+    font-size: abs.fluid-type(32rem, 144rem, 0.8rem, 1rem);
+  }
+
+  &-popup {
+    &-content-wrapper {
+      background: var(--GRDNT-PRI) left/200% 200%;
+      color: var(--CLR-GREY-0);
+      border-radius: var(--BORDER-RADIUS-SM);
+      border: 1px solid var(--CLR-GREY-7);
+
+      @media (min-resolution: 97dpi) {
+        border: 2px solid var(--CLR-GREY-7);
+      }
+    }
+
+    &-content {
+      font-size: 1.4em;
+      font-weight: 500;
+    }
+
+    &-tip {
+      background: var(--GRDNT-PRI) left/200% 200%;
+      border: 1px solid var(--CLR-GREY-7);
+
+      @media (min-resolution: 97dpi) {
+        border: 2px solid var(--CLR-GREY-7);
+      }
+    }
+
+    &-close-button {
+      color: var(--CLR-GREY-0);
+      font-size: 2.8em;
+      transition: all .3s;
+
+      &:hover {
+        color: var(--CLR-GREY-3);
+      }
+    }
+  }
+
+  &-marker-icon#{&}-interactive {
+    &:focus-visible {
+      outline: var(--OUTLINE);
+    }
+  }
+
+  &-bar {
+    border: 1px solid var(--CLR-GREY-7);
+
+    @media (min-resolution: 97dpi) {
+      border: 2px solid var(--CLR-GREY-7);
+    }
+
+    & a {
+      background: var(--GRDNT-PRI) left/200% 200%;
+      color: var(--CLR-GREY-9);
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--CLR-GREY-7);
+
+        @media (min-resolution: 97dpi) {
+          border-bottom: 2px solid var(--CLR-GREY-7);
+        }
+      }
+
+
+      &.leaflet-disabled {
+        color: var(--CLR-GREY-4)
+      }
+    }
+  }
+}

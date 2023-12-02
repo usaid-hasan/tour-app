@@ -1,0 +1,25 @@
+{% extends "email/base.njk" %}
+
+{% block content %}
+<mj-text color="#333333" font-size="14px">
+  Hi {{ name }},
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  Forgot your password?
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  If you requested a password reset, use the link below to complete the process. If you didn't make this request, ignore this email. The token is valid for only (10) minutes.
+</mj-text>
+<mj-button href="{{ url }}" font-size="14px" font-weight="600" background-color="#71B280" border-radius="8px" inner-padding="15px 25px">
+  Reset Your Password
+</mj-button>
+<mj-text color="#333333" font-size="14px">
+  You can also send a PATCH request with 'password' field on the link below:
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  [{{ apiUrl }}]
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  If you need any other help, please don't hesitate to contact us by replying to this email.
+</mj-text>
+{% endblock %}

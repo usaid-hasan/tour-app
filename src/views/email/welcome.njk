@@ -1,0 +1,25 @@
+{% extends "email/base.njk" %}
+
+{% block content %}
+<mj-text color="#333333" font-size="14px">
+  Hi {{ name }},
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  Thanks for signing up to {{ appName }}. We're thrilled to have you on board!
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  As a registered user, you'll have access to our exclusive content, including destination guides, insider travel tips, and beautiful photographs from our travel journeys.
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  We encourage you to share your own travel experiences, ask questions, and connect with other travelers in our community.
+</mj-text>
+<mj-text color="#333333" font-size="14px">
+  To upload your photo or updating your profile, click here...
+</mj-text>
+<mj-button href="{{ dashboardUrl }}" font-size="14px" font-weight="600" background-color="#71B280" border-radius="8px" inner-padding="15px 25px">
+  Visit your profile
+</mj-button>
+<mj-text color="#333333" font-size="14px">
+  If you need any help with booking your next tour, please don't hesitate to contact us by replying to this email. Thanks for joining us on this journey!
+</mj-text>
+{% endblock %}

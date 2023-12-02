@@ -1,0 +1,26 @@
+@use "../abstracts" as abs;
+
+.alert {
+  position: fixed;
+  inset: 4% 50% auto;
+  transform: translateX(-50%);
+  max-width: min(60rem, 90vw);
+  width: max-content;
+  text-align: center;
+
+  font-size: abs.fluid-type(32rem, 144rem, 1.5rem, 1.8rem);
+  padding: 1em;
+  font-weight: 500;
+  color: var(--CLR-GREY-0);
+
+  border: none;
+  border-radius: var(--BORDER-RADIUS-SM);
+
+  &--error {
+    background: var(--GRDNT-ALERT);
+  }
+
+  &--success {
+    background: var(--GRDNT-PRI) left/200% 200%;
+  }
+}

@@ -1,0 +1,27 @@
+@use "../abstracts" as abs;
+
+.feature-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: abs.fluid-type(32rem, 144rem, 1.2rem, 1.4rem);
+  gap: 1em;
+  padding: 1.2em;
+
+  text-align: center;
+  border-radius: var(--BORDER-RADIUS-MD);
+  box-shadow: var(--CARD-SHADOW);
+  transition: all .2s ease-in;
+
+  &__icon {
+    width: 3.5em;
+    height: 3.5em;
+    color: var(--CLR-PRI);
+  }
+
+  &:hover {
+    box-shadow: var(--CARD-SHADOW-DARK);
+    transform: translateY(-0.4rem) scale(1.02);
+  }
+}

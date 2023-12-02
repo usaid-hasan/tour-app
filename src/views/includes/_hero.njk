@@ -1,0 +1,52 @@
+{# HERO-BACKGROUND #}
+<div class="header__hero-fixed">
+  <div class="hero">
+
+    {# Video-Box #}
+    <div class="hero__video-box">
+      {% if overview %}
+        <video autoplay muted tabindex="-1">
+          <source src="{{ assetDir.root }}video720.webm" type="video/webm">
+          Your browser doesn't support video
+        </video>
+      {% else %}
+        <picture>
+          <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-1280.avif" media="(max-width: 37.5em)" type="image/avif" width="1280" height="1920">
+          <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-1920.avif" type="image/avif" width="1920" height="1280">
+
+          <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-1280.webp" media="(max-width: 37.5em)" type="image/webp" width="1280" height="1920">
+          <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-1920.webp" type="image/webp" width="1920" height="1280">
+
+          <img src="{{ assetDir.tour }}{{ tour.imageCover }}-1920.jpeg" alt="Photo of {{ tour.name }}" width="1920" height="1280">
+        </picture>
+      {% endif %}
+    </div>
+
+    {# Text-Box #}
+    <div class="hero__text-box">
+      <h1 class="heading-1">
+        <span class="heading-1--main{{ "2" if not overview }}">
+          {{ "Explore" if overview else title }}
+        </span>
+        <span class="heading-1--sub">
+          {{ "nature in a different way" if overview else tour.duration + "-day tour package" }}
+        </span>
+      </h1>
+
+      {% if overview %}
+        <a href="/all-tours" class="btn hero__btn">Discover our tours</a>
+      {% else %}
+        <div class="hero__btn-box">
+          {% if user %}
+            <button id="btn-book-tour" class="btn hero__btn" data-stripe-key="{{ stripeKey }}" data-tour-id="{{ tour.id }}" title="Book {{ title }} tour">
+              Book now
+            </button>
+          {% else %}
+            <a href="/login" class="btn hero__btn">Book now</a>
+          {% endif %}
+          <a href="#section-details" class="btn hero__btn hero__btn--alt">Learn more &darr;</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

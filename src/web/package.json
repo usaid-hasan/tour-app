@@ -1,0 +1,23 @@
+{
+  "name": "web",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "watch": "(trap 'kill 0' SIGINT; npm run watch:css --ws & npm run watch:js --ws)",
+    "build": "npm run build:css --ws ; npm run build:js --ws",
+    "build:js": "esbuild js/App.js --bundle --minify --outfile=../../public/script.js",
+    "watch:js": "esbuild js/App.js --bundle --sourcemap --watch --outfile=../../public/script.js",
+    "build:css": "sass --load-path=../../node_modules/leaflet/dist/ scss/main.scss | postcss --use autoprefixer | esbuild --bundle --minify --outfile=../../public/style.css --loader=css --external:*",
+    "watch:css": "sass --load-path=../../node_modules/leaflet/dist/ scss/main.scss ../../public/style.css --watch --embed-sources"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "esbuild": "^0.19.7",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.69.5"
+  }
+}

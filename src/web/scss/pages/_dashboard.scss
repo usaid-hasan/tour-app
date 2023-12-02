@@ -1,0 +1,43 @@
+@use "../abstracts" as abs;
+
+.dashboard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(max-content, 1fr) minmax(70%, 4fr);
+
+  @include abs.respond(phone) {
+    grid-template-columns: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: abs.fluid-type(32rem, 144rem, 3rem, 6rem);
+  }
+
+  &__sidebar {
+    border-right: 1px solid var(--CLR-GREY-3);
+    padding-inline-end: 5px;
+
+    @include abs.respond(phone) {
+      border-right: none;
+      position: absolute;
+      inset: 0 auto auto 0;
+      z-index: 10;
+      transform: translateX(-100%);
+      transition: all .3s;
+
+      width: 60vw;
+      height: 100%;
+      background-color: #fffb;
+      backdrop-filter: blur(2px);
+      border-bottom-left-radius: 3rem;
+      padding-block: clamp(5rem, 3.857rem + 3.571vw, 9rem);
+
+
+      .open-sidebar & {
+        transform: translateX(0);
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<mjml>
+<mj-head>
+  <mj-title>{{ subject }}</mj-title>
+  <mj-preview>{{ preview }}</mj-preview>
+</mj-head>
+
+<mj-body background-color="#e6e6e6">
+  {% include "email/_preview-space.njk" %}
+  <mj-wrapper padding="10px">
+    <mj-section padding="25px 10px" background-color="#f6f6f6">
+      <mj-column>
+        {% block content %}{% endblock %}
+      </mj-column>
+    </mj-section>
+    <mj-section padding="5px">
+      <mj-column>
+        <mj-text color="#999999" font-size="12px" align="center">
+          &copy; {{ appName }}.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-wrapper>
+</mj-body>
+</mjml>

@@ -7,24 +7,52 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "watch": "node --watch src/index.js",
+    "dev": "node --watch src/index.js",
+    "build": "npm run build --ws",
+    "watch": "npm run watch --ws",
     "lint": "lint-staged",
     "prepare": "husky install"
   },
+  "workspaces": [
+    "src/web"
+  ],
   "imports": {
-    "#*": "./src/*.js"
+    "#models": "./src/models/index.js",
+    "#handlers": "./src/handlers/index.js",
+    "#routes": "./src/routes/index.js",
+    "#*.js": "./src/*.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^1.41.0",
+    "compression": "^1.7.4",
     "consola": "^3.2.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.1"
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "html-to-text": "^9.0.5",
+    "jose": "^5.1.1",
+    "mjml": "^4.14.1",
+    "mongoose": "^8.0.1",
+    "morgan": "^1.10.0",
+    "ms": "^2.1.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.7",
+    "nunjucks": "^3.2.4",
+    "sharp": "^0.32.6",
+    "slugify": "^1.6.6",
+    "stripe": "^14.5.0",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "eslint": "^8.54.0",
     "eslint-import-resolver-custom-alias": "^1.3.2",
     "eslint-plugin-import": "^2.29.0",
-    "eslint-rules": "github:usaid-hasan/eslint-rules#semver:^0.0.2",
+    "eslint-rules": "github:usaid-hasan/eslint-rules#semver:^0.0.3",
     "globals": "^13.23.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0"

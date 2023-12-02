@@ -1,0 +1,72 @@
+@use "../abstracts" as abs;
+
+:root {
+  --CLR-GREY-0: #f8f9fa;
+  --CLR-GREY-1: #f1f3f5;
+  --CLR-GREY-2: #e9ecef;
+  --CLR-GREY-3: #dee2e6;
+  --CLR-GREY-4: #ced4da;
+  --CLR-GREY-5: #adb5bd;
+  --CLR-GREY-6: #868e96;
+  --CLR-GREY-7: #495057;
+  --CLR-GREY-8: #343a40;
+  --CLR-GREY-9: #212529;
+
+  --CARD-SHADOW: 0.4rem 1.2rem 2rem rgb(0 0 0 / 0.15);
+  --CARD-SHADOW-DARK: 0.5rem 1.5rem 2.2rem -0.2rem rgb(0 0 0 / 0.16);
+  --BTN-SHADOW: 0px 1px 2px 0px rgb(60 64 67 / 0.3) , 0px 1px 3px 1px rgb(60 64 67 / 0.15);
+
+  --BORDER-RADIUS-PAGE: 3rem;
+  --BORDER-RADIUS-SM: 0.8rem;
+  --BORDER-RADIUS-MD: 1.2rem;
+
+  --FF: 'Rubik', sans-serif;
+
+  --CLR-PRI: #65a30d;
+  --CLR-PRI-a: #5b930c;
+  --CLR-PRI-b: #51820a;
+  --CLR-PRI-c: #477209;
+
+  --CLR-SEC-1a: #71B280;
+  --CLR-SEC-1b: #6eaf7f;
+  --CLR-SEC-1c: #8ddb81;
+
+  --CLR-SEC-2a: #134E5E;
+  --CLR-SEC-2b: #16515f;
+  --CLR-SEC-2c: #52a696;
+
+  --CLR-SEC-3a: #c00;
+  --CLR-SEC-3b: #700;
+
+  --OUTLINE: 4px solid #65a30daf;
+
+  --GRDNT-BG: linear-gradient(to right, var(--CLR-SEC-1a), var(--CLR-SEC-2a));
+  --GRDNT-BG-FULL: linear-gradient(to right, var(--CLR-SEC-1a) 0% 50%, var(--CLR-SEC-2a) 50% 100%);
+  --GRDNT-PRI: radial-gradient(circle farthest-corner at 10% 20%, var(--CLR-SEC-1a) 0%, var(--CLR-SEC-2a) 90%);
+  --GRDNT-OVERLAY: radial-gradient(circle farthest-corner at 10% 20%, var(--CLR-SEC-1c) 0%, var(--CLR-SEC-2c) 90%);
+  --GRDNT-ALERT: radial-gradient(circle farthest-corner at 10% 20%, var(--CLR-SEC-3a) 0%, var(--CLR-SEC-3b) 90%);
+  --GRDNT-CTA: radial-gradient(circle farthest-corner at 10% 20%, #8ddb8140 0%, #52a69640 90%);
+
+  --MAX-WIDTH: 144rem;
+  --HEADER-PAD: 3rem;
+  --NAVBAR-HEIGHT: 6rem;
+
+  @include abs.respond(tablet) {
+    --HEADER-PAD: 1.5rem;
+  }
+
+  @include abs.respond(tablet-small) {
+    --HEADER-PAD: 1rem;
+  }
+
+  @include abs.respond(phone) {
+    --NAVBAR-HEIGHT: 5.5rem;
+    --HEADER-PAD: 0rem;
+  }
+
+  @include abs.respond(phone-small) {
+    --NAVBAR-HEIGHT: 5rem;
+  }
+
+  --MIN-HEADER-PAD: max(var(--HEADER-PAD), 1rem);
+}

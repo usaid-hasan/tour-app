@@ -1,2 +1,8 @@
 node_modules
+public/img
+public/*.webm
+public/*.js
+public/*.css
+public/*.map
+data
 *.env

@@ -1,0 +1,43 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-FORM #}
+      <section class="sec-form">
+        <header class="sec-header--center">
+          <h1 class="heading-2">Reset your password</h1>
+        </header>
+
+        {# Form #}
+        <form id="form-reset-password" class="form">
+          <fieldset class="form__group">
+            <input class="form__input" id="password" name="password" type="password" placeholder="••••••••"	required="" minlength="8" autocomplete="new-password">
+            <label class="form__label" for="password">New password</label>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <input class="form__input" id="password-confirm" name="passwordConfirm" type="password" placeholder="••••••••" required="" minlength="8" autocomplete="new-password">
+            <label class="form__label" for="password-confirm">Confirm password</label>
+          </fieldset>
+
+          <div class="form__group">
+            <button type="submit" class="btn form__btn" title="Save password">Save password</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}

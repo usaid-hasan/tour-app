@@ -1,0 +1,153 @@
+@use "../abstracts" as abs;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  font-size: abs.fluid-type(32rem, 144rem, 1.4rem, 1.8rem);
+  line-height: normal;
+
+  &__group {
+    position: relative;
+    border: none;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.8em;
+    flex: 1 0 7.5rem;
+    justify-content: space-between;
+
+    &#{&}--row {
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      column-gap: 0.5em;
+      border: none;
+
+      & > label {
+        fill: transparent;
+        color: var(--CLR-PRI);
+        cursor: pointer;
+        padding: 0.5em;
+        transition: all .2s;
+        border-radius: 100%;
+      }
+
+      & > input:checked ~ label {
+        fill: var(--CLR-PRI);
+      }
+
+      & > label:hover,
+      & > label:hover ~ label {
+        fill: var(--CLR-PRI);
+      }
+
+      & > input:checked + label:hover,
+      & > input:checked + label:hover ~ label,
+      & > input:checked ~ label:hover,
+      & > input:checked ~ label:hover ~ label,
+      & > label:hover ~ input:checked ~ label {
+        fill: var(--CLR-PRI-b);
+        color: var(--CLR-PRI-b);
+      }
+    }
+  }
+
+  &__label {
+    font-size: 0.75em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    line-height: inherit;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.75em 1.25em;
+    border: none;
+    border-radius: var(--BORDER-RADIUS-PAGE);
+    box-shadow: 0px 2px 4px 0px inset rgb(0 0 0 / 0.06);
+    color: var(--CLR-GREY-7);
+    background-color: var(--CLR-GREY-2);
+    caret-color: var(--CLR-PRI);
+
+    &:is(textarea) {
+      resize: none;
+      overflow-y: auto;
+      scrollbar-color: var(--CLR-PRI) #1111;
+      border-radius: var(--BORDER-RADIUS-MD);
+      @include abs.webkit-scrollbar(4px, #1111, var(--GRDNT-PRI));
+    }
+
+    &--hidden {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      position: absolute;
+
+      &:focus-visible + label {
+        outline: var(--OUTLINE);
+      }
+    }
+
+    &::placeholder {
+      color: var(--CLR-GREY-6);
+    }
+
+    &:required + label::after {
+      content: " *";
+      color: var(--CLR-SEC-3a);
+    }
+
+    &:user-invalid {
+      outline: 4px solid var(--CLR-SEC-3a);
+
+      &[type="text"] + label::before,
+      &[type="password"] + label::before,
+      &[type="email"] + label::before,
+      &:is(textarea) + label::before {
+        color: var(--CLR-SEC-3a);
+        position: absolute;
+        inset: 0 0 auto auto;
+      }
+
+      &[type="text"] + label::before,
+      &:is(textarea) + label::before {
+        content: " Minimum 3 characters long";
+      }
+
+      &[type="password"] + label::before {
+        content: " Minimum 8 characters long";
+      }
+
+      &[type="email"] + label::before {
+        content: " Please provide a valid email";
+      }
+    }
+  }
+
+  &__user-photo {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+  }
+
+  &__btn {
+    margin-top: auto;
+    font-size: 1em;
+    font-weight: 500;
+
+    &--center {
+      align-self: center;
+    }
+  }
+
+  &__icon {
+    width: 2em;
+    height: 2em;
+  }
+}

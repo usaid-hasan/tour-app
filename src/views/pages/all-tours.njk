@@ -1,0 +1,33 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-CARDS #}
+      <section class="sec-cards">
+        <header class="sec-header--center">
+          <h1 class="heading-2">All tours</h1>
+        </header>
+
+        <div class="sec-cards__content">
+          {% from "includes/macro.njk" import tourCard %}
+          {% for tour in tours %}
+            {{ tourCard(tour) }}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}

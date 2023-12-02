@@ -1,0 +1,61 @@
+{# HEADER #}
+<header class="header {{ "header--full" if heroBackground }}">
+  {# Navbar #}
+  <div class="header__nav-fixed">
+    <nav class="navbar">
+      <ul class="navbar__list">
+        <li class="navbar__listitem">
+          <a href="/" class="link navbar__link" title="Home">
+            <img class="navbar__logo" src="/logo.png" alt="Logo of {{ appName }}">
+          </a>
+        </li>
+        {% if not user %}
+          <li class="navbar__listitem">
+            <a href="/login" class="btn navbar__btn--alt">Login</a>
+          </li>
+        {% else %}
+          <li class="navbar__listitem">
+            <button id="btn-user-panel" class="btn navbar__btn" title="{{ user.name }}">
+              <img src="{{ assetDir.user }}{{ user.photo }}.webp" alt="Photo of {{ user.name }}" class="navbar__img" />
+              <span>{{ user.name }}</span>
+            </button>
+            <dialog id="dialog-user-panel" class="user-panel">
+              <menu class="user-panel__list">
+                <li class="user-panel__listitem">
+                  <a href="/account" class="link user-panel__link">
+                    <div class="user-panel__icon">
+                      <svg><use href="/icons.svg#profile"></use></svg>
+                    </div>
+                    <span>Profile</span>
+                  </a>
+                </li>
+                <li class="user-panel__listitem">
+                  <button id="btn-logout" class="btn user-panel__btn" title="Logout">
+                    <div class="user-panel__icon">
+                      <svg><use href="/icons.svg#logout"></use></svg>
+                    </div>
+                    <span>Logout</span>
+                  </button>
+                </li>
+              </menu>
+            </dialog>
+          </li>
+          {% if sidebar %}
+            <li class="navbar__listitem">
+              <button id="btn-sidebar-menu" class="btn navbar__btn" title="Sidebar">
+                <div class="navbar__icon">
+                  <svg><use href="/icons.svg#menu"></use></svg>
+                </div>
+              </button>
+            </li>
+          {% endif %}
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+  {# Hero-Background #}
+  {% if heroBackground %}
+    {% include "./_hero.njk" %}
+  {% endif %}
+</header>

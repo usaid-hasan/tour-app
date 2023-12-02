@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="application-name" content="{{ appName }}">
+  <meta name="description" content="A tour booking app">
+  <meta name="theme-color" content="#65a30d">
+  <meta name="color-scheme" content="light">
+
+  <title>{{ title }} | {{ appName }}</title>
+
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+  <script defer src="https://js.stripe.com/v3/"></script>
+  <script defer src="/script.js"></script>
+</head>
+<body>
+  <dialog id="dialog-alert" class="alert" data-alert="{{ "true" if alert }}" data-alert-time="{{ alert.time }}" data-alert-type="{{ alert.type }}">
+    {{ alert.message }}
+  </dialog>
+
+  <aside class="banner">
+    <a class="link link--alt" href="{{ gitUrl }}" target="_blank" rel="noreferrer">
+      Github Repo &rarr;
+    </a>
+  </aside>
+
+  {% block header %}{% endblock %}
+
+  {% block content %}{% endblock %}
+
+  {% block footer %}{% endblock %}
+</body>
+</html>

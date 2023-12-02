@@ -1,0 +1,34 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main main--pad">
+    <div class="page-slide">
+
+      {# SECTION-DASHBOARD #}
+      <div class="dashboard">
+
+        {# Sidebar #}
+        <nav class="dashboard__sidebar">
+          <menu class="sidebar">
+            {% from "includes/macro.njk" import sidebarItem %}
+            {{ sidebarItem('/account', 'options', 'Account', account) }}
+            {{ sidebarItem('/security', 'key', 'Security', security) }}
+            {{ sidebarItem('/bookings', 'map', 'My bookings', myBookings) }}
+            {{ sidebarItem('/reviews', 'star', 'My reviews', myReviews) }}
+          </menu>
+        </nav>
+
+        {# Content #}
+        <div class="dashboard__content">
+          {% block dashboard %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

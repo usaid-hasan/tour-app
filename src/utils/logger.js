@@ -1,6 +1,6 @@
 import { env } from 'node:process';
-
 import { createConsola } from 'consola';
+// eslint-disable-next-line import/no-unresolved
 import { colorize } from 'consola/utils';
 
 const isDev = env.NODE_ENV === 'development';

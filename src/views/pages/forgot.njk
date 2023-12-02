@@ -1,0 +1,39 @@
+{% extends "extends/base.njk" %}
+
+{# HEADER #}
+{% block header %}
+  {% include "includes/_header.njk" %}
+{% endblock %}
+
+{% block content %}
+  {# MAIN #}
+  <main class="main">
+    <div class="page-slide">
+
+      {# SECTION-FORM #}
+      <section class="sec-form">
+        <header class="sec-header--center">
+          <h1 class="heading-2">Your email address</h1>
+        </header>
+
+        {# Form #}
+        <form id="form-forgot-password" class="form">
+          <fieldset class="form__group">
+            <input class="form__input" id="email" name="email" type="email" placeholder="you@example.com" required="" autocomplete="email">
+            <label class="form__label" for="email">Email address</label>
+          </fieldset>
+
+          <div class="form__group">
+            <button class="btn form__btn" title="Send reset token">Send reset token</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{# FOOTER #}
+{% block footer %}
+  {% include "includes/_footer.njk" %}
+{% endblock %}
+

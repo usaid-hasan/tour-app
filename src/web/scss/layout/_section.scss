@@ -1,0 +1,59 @@
+@use "../abstracts" as abs;
+
+.sec-header {
+  margin: 0 8% min(7rem, 8%);
+
+  &--center {
+    margin: 0 auto min(7rem, 8%);
+    width: fit-content;
+  }
+}
+
+.main {
+  max-width: var(--MAX-WIDTH);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--HEADER-PAD);
+  position: relative;
+  z-index: 1;
+  scroll-margin-top: var(--NAVBAR-HEIGHT);
+
+  &--pad {
+    padding-block-end: var(--MIN-HEADER-PAD);
+  }
+}
+
+.page-slide {
+  background-color: var(--CLR-GREY-0);
+  border-radius: var(--BORDER-RADIUS-PAGE);
+  position: relative;
+  min-height: calc(100vh - (var(--NAVBAR-HEIGHT) + var(--MIN-HEADER-PAD)));
+  min-height: calc(100svh - (var(--NAVBAR-HEIGHT) + var(--MIN-HEADER-PAD)));
+
+  display: flex;
+  flex-direction: column;
+  row-gap: abs.fluid-type(32rem, 144rem, 8rem, 15rem);
+  padding-block: abs.fluid-type(32rem, 144rem, 5rem, 9rem);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 4.8rem;
+    width: var(--BORDER-RADIUS-PAGE);
+    z-index: 15;
+  }
+
+  &::before {
+    left: 0;
+    border-bottom-left-radius: var(--BORDER-RADIUS-PAGE);
+    box-shadow: -1rem 1rem 0 0.5rem var(--CLR-SEC-1b);
+  }
+
+  &::after {
+    right: 0;
+    border-bottom-right-radius: var(--BORDER-RADIUS-PAGE);
+    box-shadow: 1rem 1rem 0 0.5rem var(--CLR-SEC-2b);
+  }
+}

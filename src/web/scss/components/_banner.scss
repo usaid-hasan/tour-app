@@ -1,0 +1,11 @@
+@use "../abstracts" as abs;
+
+.banner {
+  width: max-content;
+  position: fixed;
+  inset: 5px 50% auto;
+  transform: translateX(-50%);
+  z-index: 20;
+  text-align: center;
+  font-size: abs.fluid-type(32rem, 144rem, 1.3rem, 1.4rem);
+}

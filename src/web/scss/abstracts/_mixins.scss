@@ -1,0 +1,115 @@
+@use "sass:color";
+@use "sass:math";
+
+///  Media query manager
+///
+///  @param {string} $breakpoint
+///    Breakpoint used for media query
+
+@mixin respond($breakpoint) {
+  
+  @if $breakpoint == desktop {
+    // width <= 1200px
+    @media only screen and (max-width: 75em) { // 1200px/16px = 75em
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-small {
+    // width <= 1024px
+    @media only screen and (max-width: 64em) { // 1024px/16px = 64em
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    // width <= 900px
+    @media only screen and (max-width: 56.25em) { // 900px/16px = 56.25em
+      @content;
+    }
+  }
+  @if $breakpoint == tablet-small {
+    // width <= 768px
+    @media only screen and (max-width: 48em) { // 768px/16px = 48em
+      @content;
+    }
+  }
+  @if $breakpoint == phone {
+    // width <= 600px
+    @media only screen and (max-width: 37.5em) { // 600px/16px = 37.5em
+      @content;
+    }
+  }
+  @if $breakpoint == phone-small {
+    // width <= 480px
+    @media only screen and (max-width: 30em) { // 480px/16px = 30em
+      @content;
+    }
+  }
+}
+
+@mixin webkit-scrollbar($width, $track, $thumb) {
+  &::-webkit-scrollbar:horizontal {
+    height: $width;
+  }
+  
+  &::-webkit-scrollbar:vertical {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: $track;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb;
+    border-radius: 100px;
+  }
+}
+
+///  Generates tints and shades of a given color
+///
+///  @param {string} $color-name
+///    Name of the color that will be used as a prefix
+///  @param {string} $color-value
+///    Hexcode of the color
+///  @param {number} $steps 
+///    The number of tints and shades based on which the percentages are calculated
+///  @param {boolean} $rgb 
+///    Whether to generate rgb of tints and shades
+///
+///  Tints: New value = current value + ((255 - current value) x tint factor)
+///  Shades: New value = current value x shade factor
+
+@mixin generate-tints-shades($color-name, $color-value, $steps: 10, $rgb: false) {
+  --#{$color-name}: #{$color-value};
+  @if $rgb {
+    --#{$color-name}-rgb: #{red($color-value)}, #{green($color-value)}, #{blue($color-value)};
+  }
+  
+  $percent-diff: math.round(math.div(100, $steps));
+  $tint-percent: math.div(100%, $steps);
+  $shade-percent: math.div(-100%, $steps);
+
+  @for $i from 1 through $steps {
+    $tint-factor: $tint-percent * $i;
+
+    $tint: color.scale($color-value, $red: $tint-factor, $green: $tint-factor, $blue: $tint-factor);
+
+    --#{$color-name}-tint-#{$percent-diff * $i}: #{$tint};
+    
+    @if $rgb {
+      --#{$color-name}-tint-#{$percent-diff * $i}-rgb: #{red($tint)}, #{green($tint)}, #{blue($tint)};
+    }
+  }
+
+  @for $i from 1 through $steps {
+    $shade-factor: $shade-percent * $i;
+    
+    $shade: color.scale($color-value, $red: $shade-factor, $green: $shade-factor, $blue: $shade-factor);
+
+    --#{$color-name}-shade-#{$percent-diff * $i}: #{$shade};
+    
+    @if $rgb {
+      --#{$color-name}-shade-#{$percent-diff * $i}-rgb: #{red($shade)}, #{green($shade)}, #{blue($shade)};
+    }
+  }
+}

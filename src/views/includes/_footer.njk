@@ -1,0 +1,53 @@
+{# FOOTER #}
+<footer class="footer">
+  <div class="footer__grid">
+    {# Column-Logo #}
+    <div class="footer__col--logo">
+      <img class="footer__logo" src="/logo.png" alt="Logo of {{ appName }}">
+      <div class="footer__social-links">
+        {% from "includes/macro.njk" import footerIconLink %}
+        {{ footerIconLink('#', 'facebook') }}
+        {{ footerIconLink('#', 'instagram') }}
+        {{ footerIconLink('#', 'twitter') }}
+      </div>
+      <p class="footer__copyright">&copy; {{ appName }} 2030<br>All rights reserved.</p>
+    </div>
+
+    {# Column-Address #}
+    <address class="footer__col--address">
+      <b class="footer__heading">Contact us</b>
+      <ul class="footer__list">
+        <li class="footer__item"><a class="link link--alt" href="mailto:email@abc.com">email@abc.com</a></li>
+      </ul>
+    </address>
+
+    {# Column-Navigation #}
+    <nav class="footer__col--nav">
+      <b class="footer__heading">Account</b>
+      <ul class="footer__list">
+        <li class="footer__item"><a href="#" class="link link--alt">Create account</a></li>
+        <li class="footer__item"><a href="#" class="link link--alt">Sign in</a></li>
+      </ul>
+    </nav>
+
+    {# Column-Navigation #}
+    <nav class="footer__col--nav">
+      <b class="footer__heading">Company</b>
+      <ul class="footer__list">
+        <li class="footer__item"><a href="#" class="link link--alt">About us</a></li>
+        <li class="footer__item"><a href="#" class="link link--alt">Become a guide</a></li>
+        <li class="footer__item"><a href="#" class="link link--alt">Careers</a></li>
+      </ul>
+    </nav>
+
+    {# Column-Navigation #}
+    <nav class="footer__col--nav">
+      <b class="footer__heading">Resources</b>
+      <ul class="footer__list">
+        <li class="footer__item"><a href="#" class="link link--alt">API Docs</a></li>
+        <li class="footer__item"><a href="#" class="link link--alt">Help center</a></li>
+        <li class="footer__item"><a href="#" class="link link--alt">Privacy &amp; terms</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>

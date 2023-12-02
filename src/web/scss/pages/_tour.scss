@@ -1,0 +1,191 @@
+@use "../abstracts" as abs;
+
+.sec-details {
+  & h2 {
+    margin-bottom: 1em;
+  }
+
+  &__content {
+    font-size: abs.fluid-type(32rem, 144rem, 1.2rem, 1.4rem);
+    padding-inline: 8%;
+    display: grid;
+    grid-template-columns: 3.5fr 2fr;
+    gap: 4em;
+
+    @include abs.respond(tablet) {
+      grid-template-columns: 1fr 1fr;
+      gap: 6em;
+    }
+
+    @include abs.respond(phone-small) {
+      grid-template-columns: 1fr;
+      gap: 4em;
+    }
+  }
+
+  &__text-col {
+    @include abs.respond(tablet) {
+      grid-area: auto/1/auto/-1;
+    }
+
+    & > p:not(:last-child) {
+      margin-bottom: 2em;
+    }
+  }
+
+  &__feat-col {
+    grid-area: 1/2/span 2;
+    border-left: 1px solid var(--CLR-GREY-3);
+
+    padding-inline: 4em 0;
+
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: 4em;
+    align-content: start;
+
+    @include abs.respond(tablet) {
+      grid-area: auto/1/auto/-1;
+      border-left: none;
+      grid-template-columns: 1fr 1fr;
+      grid-template-columns: subgrid;
+      gap: 6em;
+      padding-inline: 0;
+    }
+
+    @include abs.respond(phone-small) {
+      grid-template-columns: 1fr;
+      grid-row: span 2;
+      gap: 4em;
+    }
+  }
+
+  &__gallery-col {
+    @include abs.respond(tablet) {
+      grid-area: auto/1/auto/-1;
+    }
+  }
+
+  &__gallery-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--BORDER-RADIUS-SM);
+
+    & img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 3/2;
+      transform: scale(1.02);
+      transition: transform .2s;
+    }
+
+    & > figcaption {
+      position: absolute;
+      inset: 0 50% auto;
+      transform: translate(-50%, -10%);
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      z-index: 1;
+
+      font-size: 1em;
+      font-weight: 300;
+      color: var(--CLR-GREY-0);
+      transition: all .3s;
+    }
+
+    &:hover {
+
+      & > img,
+      & > :where(picture) img {
+        filter: blur(1px) brightness(50%);
+        transform: scale(1);
+      }
+
+      & > figcaption {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6em;
+  }
+
+  &__feature {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+    & img {
+      height: 2.8em;
+      width: 2.8em;
+      border-radius: 50%;
+    }
+
+    & > :last-child {
+      margin-left: auto;
+    }
+  }
+
+  &__icon {
+    width: 1.5em;
+    height: 1.5em;
+    color: var(--CLR-PRI);
+  }
+}
+
+.sec-map {
+  & #container-map {
+    height: 70vh;
+    height: 70lvh;
+    width: 100%;
+    box-shadow: var(--CARD-SHADOW);
+
+    &:focus-visible {
+      outline: var(--OUTLINE);
+    }
+  }
+}
+
+.sec-reviews {
+  &__content {
+    padding: 2% 6% clamp(4rem, 8%, 6rem);
+    display: flex;
+    font-size: abs.fluid-type(32rem, 144rem, 1.4rem, 1.8rem);
+    gap: 2em;
+    overflow-x: auto;
+    scrollbar-color: var(--CLR-PRI) #1111;
+    @include abs.webkit-scrollbar(4px, #1111, var(--GRDNT-PRI));
+
+    &:focus-visible {
+      outline: var(--OUTLINE);
+    }
+
+    & > .review-box {
+      max-width: 18em;
+      flex: 1 0 18em;
+    }
+  }
+
+  &__btn {
+    height: 5em;
+    width: 5em;
+    display: flex;
+    flex: 0 0 auto;
+    align-self: center;
+    --btn-border-radius: 50%;
+    --padding: 1em;
+    --btn-box-shadow: var(--BTN-SHADOW);
+
+    & > span {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

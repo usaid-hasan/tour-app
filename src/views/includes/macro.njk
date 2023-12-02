@@ -1,0 +1,202 @@
+{# REVIEW-BOX #}
+{% macro reviewBox(review, tourPage=true) %}
+  {% if tourPage %}
+    <figure class="review-box">
+      <figcaption class="review-box__name">{{ review.user.name }}</figcaption>
+      <img src="{{ assetDir.user }}{{ review.user.photo }}.webp" alt="Photo of {{ review.user.name }}" class="review-box__img">
+  {% else %}
+    <figure class="review-box" data-review-id="{{ review.id }}" data-stars="{{ review.rating }}" data-tour-id="{{ review.tour.id }}">
+      <a href="/tour/{{ review.tour.slug }}" class="link review-box__name">{{ review.tour.name }}</a>
+      <div class="review-box__btn-box">
+        <button data-op="delete" class="btn review-box__btn" title="Delete review">
+          <div class="review-box__icon">
+            <svg>
+              <use href="/icons.svg#trash"></use>
+            </svg>
+          </div>
+        </button>
+        <button data-op="update" class="btn review-box__btn" title="Edit review">
+          <div class="review-box__icon">
+            <svg>
+              <use href="/icons.svg#create"></use>
+            </svg>
+          </div>
+        </button>
+      </div>
+  {% endif %}
+      <blockquote class="review-box__text">
+        <p>{{ review.review }}</p>
+      </blockquote>
+      <div class="review-box__stars">
+        {% for i in range(1, 6) %}
+          {% set star = "-full" if review.rating >= i %}
+          <div class="review-box__icon">
+            <svg>
+              <use href="/icons.svg#star{{ star }}"></use>
+            </svg>
+          </div>
+        {% endfor %}
+      </div>
+    </figure>
+{% endmacro %}
+
+{# REVIEW-DIALOG #}
+{% macro reviewDialog(formId, btnText) %}
+  <dialog id="dialog-review" class="modal">
+    <form id="{{ formId }}" method="dialog" class="form">
+      <fieldset class="form__group">
+        <textarea class="form__input" id="review" name="review" minlength="3" maxlength="320" placeholder="Write your review" cols="40" rows="7" required></textarea>
+        <label class="form__label" for="review">Review</label>
+      </fieldset>
+
+      <fieldset class="form__group--star-rating">
+        {% for i in range(1, 6) %}
+          <input class="form__input--hidden" inputmode="numeric" type="radio" id="star-{{ loop.revindex }}" name="rating" value="{{ loop.revindex }}" required/>
+          <label class="form__label" for="star-{{ loop.revindex }}" title="{{ loop.revindex }} Star">
+            <div class="form__icon">
+              <svg><use href="/icons.svg#star-i"></use></svg>
+            </div>
+          </label>
+        {% endfor %}
+      </fieldset>
+
+      <input type="hidden" name="tour" value="{{ tour.id }}">
+
+      <button class="btn modal__close-btn" value="cancel" title="Close">
+        <svg><use href="/icons.svg#close"></use></svg>
+      </button>
+
+      <button class="btn form__btn form__btn--center" type="submit" title="{{ btnText }}">
+        {{ btnText }}
+      </button>
+    </form>
+  </dialog>
+{% endmacro %}
+
+{# CONFIRMATION-BOX #}
+{% macro confirmationBox(formId, btnText) %}
+  <dialog id="dialog-confirmation" class="modal">
+    <form id="{{ formId }}" method="dialog" class="form">
+      <p>{{ caller() }}</p>
+
+      <button class="btn modal__close-btn" value="cancel" title="Close">
+        <svg>
+          <use href="/icons.svg#close"></use>
+        </svg>
+      </button>
+
+      <button class="btn btn--error form__btn form__btn--center" value="{{ formId }}" title="Confirm">
+        {{ btnText }}
+      </button>
+    </form>
+  </dialog>
+{% endmacro %}
+
+{# TOUR-CARD #}
+{% macro tourCard(tour) %}
+  <article class="card">
+    <div class="card__img-box">
+      <picture>
+        <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-960.avif" type="image/avif" width="1920" height="1280">
+        <source srcset="{{ assetDir.tour }}{{ tour.imageCover }}-960.webp" type="image/webp" width="1920" height="1280">
+        <img src="{{ assetDir.tour }}{{ tour.imageCover }}-1920.jpeg" width="1920" height="1280" loading="lazy" alt="Photo {{ loop.index }}" class="card__img">
+      </picture>
+    </div>
+    <div class="card__text-box">
+      <div class="card__header">
+        <h3 class="card__heading">{{ tour.name }}</h3>
+        <h4 class="card__sub-heading">{{ tour.duration }} day tour</h4>
+      </div>
+      <p class="card__text">{{ tour.summary }}</p>
+      <div class="card__attribute-box">
+        {{ cardAttr('flag', tour.locations.length + ' stops') }}
+        {{ cardAttr('calendar', tour.startDates[0].toLocaleString('en-us', { month: 'short', year: '2-digit' })) }}
+        {{ cardAttr('people', tour.maxGroupSize + ' person') }}
+        {{ cardAttr('star', tour.ratingsAverage.toFixed(1) + ' (' + tour.ratingsQuantity + ')') }}
+      </div>
+      <div class="card__footer">
+        {% if tour.priceDiscount %}
+          <span class="card__pricetag">
+            <strong>
+              {{ currencySymbol | safe }} <s>{{ tour.price }}</s><br><span>{{ tour.priceDiscount }}</span>
+            </strong> per person
+          </span>
+        {% else %}
+          <span>
+            <strong>{{ currencySymbol | safe }} {{ tour.price }}</strong> per person
+          </span>
+        {% endif %}
+        <a href="/tour/{{ tour.slug }}" class="btn card__btn">Details</a>
+      </div>
+    </div>
+  </article>
+{% endmacro %}
+
+{# CARD-ATTRIBUTE #}
+{% macro cardAttr(icon, text) %}
+  <div class="card__attribute">
+    <div class="card__icon">
+      <svg>
+        <use href="/icons.svg#{{ icon }}"></use>
+      </svg>
+    </div>
+    <span>{{ text }}</span>
+  </div>
+{% endmacro %}
+
+{# FEATURE-BOX #}
+{% macro featurebox(icon, heading) %}
+  <article class="feature-box">
+    <div class="feature-box__icon">
+      <svg>
+        <use href="/icons.svg#{{ icon }}"></use>
+      </svg>
+    </div>
+    <h3 class="heading-3">{{ heading }}</h3>
+    <p class="feature-box__text">
+      {{ caller() }}
+    </p>
+  </article>
+{% endmacro %}
+
+{# INFORMATION-ROW #}
+{% macro infoRow(icon, label, text, photo=null) %}
+  <li class="sec-details__feature">
+    {% if photo %}
+      <img src="{{ assetDir.user }}{{ photo }}.webp" alt="Photo of {{ text }}" />
+    {% else %}
+      <div class="sec-details__icon">
+        <svg>
+          <use href="/icons.svg#{{ icon }}"></use>
+        </svg>
+      </div>
+    {% endif %}
+    <span>{{ label | capitalize }}</span>
+    <span>{{ text | safe }}</span>
+  </li>
+{% endmacro %}
+
+{# SIDEBAR-ITEM #}
+{% macro sidebarItem(link, icon, text, active=false) %}
+  <li class="sidebar__item {{ "sidebar__item--active" if active }}">
+    <a href="{{ link }}" class="sidebar__link">
+      <div class="sidebar__icon">
+        <svg>
+          <use href="icons.svg#{{ icon }}"></use>
+        </svg>
+      </div>
+      <span>{{ text }}</span>
+    </a>
+  </li>
+{% endmacro %}
+
+{# FOOTER-LINKS #}
+{% macro footerIconLink(link, icon) %}
+  <a href="{{ link }}" class="link link--alt">
+    <div class="footer__icon">
+      <svg>
+        <use href="/icons.svg#{{ icon }}"></use>
+      </svg>
+    </div>
+  </a>
+{% endmacro %}
