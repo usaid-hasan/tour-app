@@ -102,7 +102,7 @@ export function setJwtCookieOnRes(res, token) {
     maxAge: ms(env.JWT_EXPIRY),
     httpOnly: true,
     secure: env.NODE_ENV === 'production',
-    sameSite: 'None',
+    sameSite: 'Strict',
   });
 }
 
@@ -116,7 +116,7 @@ export function unsetJwtCookieOnRes(res) {
   res.clearCookie('jwt', {
     httpOnly: true,
     secure: env.NODE_ENV === 'production',
-    sameSite: 'None',
+    sameSite: 'Strict',
   });
 }
 
