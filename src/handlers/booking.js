@@ -5,7 +5,7 @@ import { Tour, User, Booking } from '#models';
 import AppError from '#utils/app-error.js';
 import QueryProcessor from '#utils/query-processor.js';
 
-const stripe = new Stripe(env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' });
 
 /***************************************************************************/
 /**

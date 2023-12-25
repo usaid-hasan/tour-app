@@ -101,8 +101,8 @@ export function setJwtCookieOnRes(res, token) {
   res.cookie('jwt', token, {
     maxAge: ms(env.JWT_EXPIRY),
     httpOnly: true,
-    secure: env.NODE_ENV === 'production',
-    sameSite: 'Strict',
+    secure: true,
+    sameSite: 'None',
   });
 }
 
@@ -115,8 +115,8 @@ export function setJwtCookieOnRes(res, token) {
 export function unsetJwtCookieOnRes(res) {
   res.clearCookie('jwt', {
     httpOnly: true,
-    secure: env.NODE_ENV === 'production',
-    sameSite: 'Strict',
+    secure: true,
+    sameSite: 'None',
   });
 }
 
