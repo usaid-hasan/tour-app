@@ -144,7 +144,7 @@ export async function signup(req, res, next) {
   const token = await createJwtToken(user.id);
   setJwtCookieOnRes(res, token);
 
-  const dashboardUrl = `${req.protocol}://${req.get('host')}/account`;
+  const dashboardUrl = `${env.EXTERNAL_URL}/account`;
   await new Email(user).sendWelcome(dashboardUrl).catch((err) => logger.error(err));
 
   return res.status(201).json({
@@ -179,8 +179,8 @@ export async function forgotPassword(req, res, next) {
   const resetToken = await createResetToken();
 
   try {
-    const url = `${req.protocol}://${req.get('host')}/reset-password/#${resetToken}`,
-          apiUrl = `${req.protocol}://${req.get('host')}/api/v1/users/reset-password/${resetToken}`;
+    const url = `${env.EXTERNAL_URL}/reset-password/#${resetToken}`,
+          apiUrl = `${env.EXTERNAL_URL}/api/v1/users/reset-password/${resetToken}`;
 
     const [{ messageId }] = await Promise.all([
       new Email(user).sendPasswordResetToken(url, apiUrl),

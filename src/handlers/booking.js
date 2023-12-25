@@ -17,8 +17,8 @@ export async function getCheckoutSession(req, res, next) {
   if (!tour) return next(new AppError(404, 'No such tour exists'));
 
   const session = await stripe.checkout.sessions.create({
-    success_url: `${req.protocol}://${req.get('host')}/bookings?alert=booking`,
-    cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
+    success_url: `${env.EXTERNAL_URL}/bookings?alert=booking`,
+    cancel_url: `${env.EXTERNAL_URL}/tour/${tour.slug}`,
     mode: 'payment',
     client_reference_id: req.params.id,
     customer_email: req.user.email,
