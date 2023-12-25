@@ -104,7 +104,7 @@
     </div>
     <div class="card__text-box">
       <div class="card__header">
-        <h3 class="card__heading">{{ tour.name }}</h3>
+        <h3 class="card__heading">{{ tour.name }} tour</h3>
         <h4 class="card__sub-heading">{{ tour.duration }} day tour</h4>
       </div>
       <p class="card__text">{{ tour.summary }}</p>
@@ -171,7 +171,7 @@
         </svg>
       </div>
     {% endif %}
-    <span>{{ label | capitalize }}</span>
+    <span>{{ label }}</span>
     <span>{{ text | safe }}</span>
   </li>
 {% endmacro %}

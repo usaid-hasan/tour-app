@@ -29,7 +29,7 @@
                 {% from "includes/macro.njk" import infoRow %}
                 {{ infoRow('calendar', 'Next date', tour.startDates[0].toLocaleString('en', { month: 'short', year: '2-digit' })) }}
                 {{ infoRow('time', 'Duration', tour.duration + '-day tour') }}
-                {{ infoRow('people', 'Participants', tour.maxGroupSize + ' people') }}
+                {{ infoRow('people', 'Group size', tour.maxGroupSize + ' people') }}
                 {{ infoRow('flag', 'Stops', tour.locations.length + ' locations') }}
                 {{ infoRow('star', 'Rating', tour.ratingsAverage.toFixed(1)  + ' / 5') }}
                 {% if tour.priceDiscount %}
@@ -44,7 +44,7 @@
               <h2 class="heading-2">Tour guides</h2>
               <ul class="sec-details__features">
                 {% for guide in tour.guides %}
-                  {{ infoRow(null, guide.role, guide.name, guide.photo) }}
+                  {{ infoRow(null, guide.name, guide.role, guide.photo) }}
                 {% endfor %}
               </ul>
             </div>

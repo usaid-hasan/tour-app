@@ -24,7 +24,7 @@
       transform: translateX(-100%);
       opacity: 0.5;
       transition: all 0.1s ease-in;
-      border-radius: 0 var(--BORDER-RADIUS-SM) var(--BORDER-RADIUS-SM) 0;
+      border-radius: 0 var(--BORDER-RADIUS-PAGE) var(--BORDER-RADIUS-PAGE) 0;
     }
 
     &--active {
