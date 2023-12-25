@@ -13,9 +13,6 @@
     "lint": "lint-staged",
     "prepare": "husky install"
   },
-  "workspaces": [
-    "src/web"
-  ],
   "imports": {
     "#models": "./src/models/index.js",
     "#handlers": "./src/handlers/index.js",

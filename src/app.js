@@ -18,7 +18,7 @@ import AppError from '#utils/app-error.js';
 const app = express();
 
 /* Set the x-forwarded-* header when the app is behind a proxy */
-app.enable('trust-proxy');
+app.set('trust proxy', env.ADAPTABLE_TRUST_PROXY_DEPTH);
 
 /* Set the template engine to nunjucks extension */
 app.set('view engine', 'njk');
